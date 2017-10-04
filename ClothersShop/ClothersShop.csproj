@@ -80,6 +80,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -229,8 +231,35 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>ClotherShopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>ClotherShopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>ClotherShopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>ClotherShopModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ClotherShopModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClotherShopModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClotherShopModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClotherShopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClotherShopModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClotherShopModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Content.cs" />
     <Compile Include="Models\Feedback.cs" />
@@ -547,6 +576,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\ClotherShopModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ClotherShopModel.edmx</DependentUpon>
+      <LastGenOutput>ClotherShopModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ClotherShopModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ClotherShopModel.edmx</DependentUpon>
+      <LastGenOutput>ClotherShopModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -684,6 +723,13 @@
     <Content Include="assets\client\assets\less\sidemenu.less" />
     <Content Include="assets\client\assets\less\top-navbar.less" />
     <Content Include="assets\client\assets\less\variables.less" />
+    <EntityDeploy Include="Models\ClotherShopModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ClotherShopModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ClotherShopModel.edmx.diagram">
+      <DependentUpon>ClotherShopModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -760,6 +806,9 @@
     <EmbeddedResource Include="Migrations\201710021345399_InitialData.resx">
       <DependentUpon>201710021345399_InitialData.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -31,7 +31,7 @@ namespace ClothersShop
                 EnableSsl = true,
             };
 
-            var from = new MailAddress("YourEmail", "Admin SmartPhone Store");
+            var from = new MailAddress("dendivn323@gmail.com", "Admin HPShop");
             var to = new MailAddress(message.Destination);
 
             var mail = new MailMessage(from, to)

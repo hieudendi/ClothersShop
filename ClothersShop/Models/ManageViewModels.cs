@@ -28,14 +28,14 @@ namespace ClothersShop.Models
     public class SetPasswordViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Mật khẩu  Phải ít nhất {2} ký tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "New password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "Mật khẩu không trùng khớp.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -47,14 +47,14 @@ namespace ClothersShop.Models
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Mật khẩu  Phải ít nhất {2} ký tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "New password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "Mật khẩu không trùng khớp.")]
         public string ConfirmPassword { get; set; }
     }
 
