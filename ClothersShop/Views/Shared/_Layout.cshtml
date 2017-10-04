@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="MediaCenter, Template, eCommerce">
+    <meta name="robots" content="all">
+    <title>Lê Trung Hiếu- Lập Trình Web</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="~/assets/client/assets/css/bootstrap.min.css">
+
+    <!-- Customizable CSS -->
+    <link rel="stylesheet" href="~/assets/client/assets/css/main.css">
+    <link rel="stylesheet" href="~/assets/client/assets/css/green.css">
+    <link rel="stylesheet" href="~/assets/client/assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/assets/client/assets/css/owl.transitions.css">
+    <link rel="stylesheet" href="~/assets/client/assets/css/animate.min.css">
+    <!-- Demo Purpose Only. Should be removed in production -->
+    <link rel="stylesheet" href="~/assets/client/assets/css/config.css">
+    <link href="~/assets/client/assets/css/green.css" rel="alternate stylesheet" title="Green color">
+    <link href="~/assets/client/assets/css/blue.css" rel="alternate stylesheet" title="Blue color">
+    <link href="~/assets/client/assets/css/red.css" rel="alternate stylesheet" title="Red color">
+    <link href="~/assets/client/assets/css/orange.css" rel="alternate stylesheet" title="Orange color">
+    <link href="~/assets/client/assets/css/navy.css" rel="alternate stylesheet" title="Navy color">
+    <link href="~/assets/client/assets/css/dark-green.css" rel="alternate stylesheet" title="Darkgreen color">
+    <!-- Demo Purpose Only. Should be removed in production : END -->
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Icons/Glyphs -->
+    <link rel="stylesheet" href="~/assets/client/assets/css/font-awesome.min.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/assets/client/assets/images/favicon.ico">
+   
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- ============================================================= TOP NAVIGATION ============================================================= -->
+        <nav class="top-bar animate-dropdown">
+            <div class="container">
+                <div class="col-xs-12 col-sm-6 no-margin">
+                    <ul>
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#change-colors">Đổi Màu Web</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" class="changecolor green-text" tabindex="-1" href="#" title="Green color">Xanh Lá</a></li>
+                                <li role="presentation"><a role="menuitem" class="changecolor blue-text" tabindex="-1" href="#" title="Blue color">Xanh Da Trời</a></li>
+                                <li role="presentation"><a role="menuitem" class="changecolor red-text" tabindex="-1" href="#" title="Red color">Đỏ</a></li>
+                                <li role="presentation"><a role="menuitem" class="changecolor orange-text" tabindex="-1" href="#" title="Orange color">Cam</a></li>
+                                <li role="presentation"><a role="menuitem" class="changecolor navy-text" tabindex="-1" href="#" title="Navy color">Xanh Da Trời Đậm</a></li>
+                                <li role="presentation"><a role="menuitem" class="changecolor dark-green-text" tabindex="-1" href="#" title="Darkgreen color">Xanh Lá Đậm</a></li>
+                            </ul>
+                        </li>
+                        <li> @{Html.RenderAction("MainMenu", "Home"); }</li>
+                    </ul>
+                </div><!-- /.col -->
+                <div class="col-xs-12 col-sm-6 no-margin">
+                    <ul class="right">
+                        <li>@Html.Partial("_LoginPartial")</li>
+                    </ul>
+                </div><!-- /.col -->
+            </div><!-- /.container -->
+        </nav><!-- /.top-bar -->
+        <!-- ============================================================= TOP NAVIGATION : END ============================================================= -->       <!-- ============================================================= HEADER ============================================================= -->
+        <header class="no-padding-bottom header-alt">
+            <div class="container no-margin">
+
+                <div class="col-xs-12 col-md-4 logo-holder">
+                    <!-- ============================================================= LOGO ============================================================= -->
+                    <div class="logo">
+                        <a href="/trang-chu">
+                            <img alt="logo" src="/assets/client/assets/images/logo.png" width="400" height="130">
+                        </a>
+                    </div><!-- /.logo -->
+                    <!-- ============================================================= LOGO : END ============================================================= -->
+                </div><!-- /.logo-holder -->
+                <div class="col-xs-12 col-md-6 top-search-holder no-margin">
+                    <div class="contact-row">
+
+                        <div class="social-icons">
+                            <ul>
+                                <li><a href="https://www.facebook.com/yeunhac.net" class="fa fa-facebook"></a></li>
+                                <font color="blue"><big><b> Facebook </b></big></font>
+                            </ul>
+                        </div>
+                    </div><!-- /.contact-row -->
+                    <!-- ============================================================= SEARCH AREA ============================================================= -->
+                    <div class="search-area">
+                        <form>
+                            <div class="control-group">
+                                <input class="search-field" placeholder="Bạn muốn tìm?" />
+                                <ul class="categories-filter animate-dropdown">
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="category-grid.html">Tất cả</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">Giày</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">Áo sơ mi</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">Áo đôi</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">Áo khoác</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">Phụ kiện</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <a class="search-button" href="#"></a>
+                            </div>
+                        </form>
+                    </div><!-- /.search-area -->
+                    <!-- ============================================================= SEARCH AREA : END ============================================================= -->
+                </div><!-- /.top-search-holder -->
+                <div class="col-xs-12 col-md-2 top-cart-row no-margin">
+                    <div class="top-cart-row-container">
+                       @{Html.RenderAction("HeaderCart", "Home"); }
+                        <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+                       
+                    
+                    </div><!-- /.top-cart-row-container -->
+                    <!-- ============================================================= SHOPPING CART DROPDOWN : END ============================================================= -->
+                </div><!-- /.top-cart-row -->
+            </div><!-- /.container -->
+            <!-- ========================================= NAVIGATION ========================================= -->
+            <nav id="top-megamenu-nav" class="megamenu-vertical animate-dropdown">
+                <div class="container">
+                    <div class="yamm navbar">
+                        <div class="navbar-header">
+                            <font color="white">
+                                @{ Html.RenderAction("ProductCategory", "Product");}
+                            </font>
+                        </div><!-- /.navbar-header -->
+                    </div><!-- /.navbar -->
+                </div><!-- /.container -->
+            </nav><!-- /.megamenu-vertical -->
+            <!-- ========================================= NAVIGATION : END ========================================= -->
+
+            <br />
+          
+           
+
+
+         
+            <!-- ============================================================= HEADER : END ============================================================= -->      
+             <div div style="background-image:url(http://www.designbolts.com/wp-content/uploads/2013/02/Grunge-Seamless-Pattern-For-Website-Background.jpg);border-radius: 20px; padding: 5px; margin:5%; margin-top:0px; margin-bottom: 0px;  border: 0px solid #FF1493; word-wrap: break-word;">
+                @RenderBody()
+                 @RenderSection("scripts", required: false)
+            </div>                                                                                                                                                   
+
+          
+   
+                                                                                                                                                                <!-- ========================================= TOP BRANDS : END ========================================= -->       <!-- ============================================================= FOOTER ============================================================= -->
+</header>
+    </div>
+     @{Html.RenderAction("Footer", "Home"); } <!-- /#footer -->
+        <!-- ============================================================= FOOTER : END ============================================================= -->
+    
+    <!-- For demo purposes – can be removed on production -->
+
+    
+    <!-- For demo purposes – can be removed on production : End -->
+    <!-- JavaScripts placed at the end of the document so the pages load faster -->
+    <script src="~/assets/client/assets/js/jquery-1.10.2.min.js"></script>
+    <script src="~/assets/client/assets/js/jquery-migrate-1.2.1.js"></script>
+    <script src="~/assets/client/assets/js/bootstrap.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+    <script src="~/assets/client/assets/js/gmap3.min.js"></script>
+    <script src="~/assets/client/assets/js/bootstrap-hover-dropdown.min.js"></script>
+    <script src="~/assets/client/assets/js/owl.carousel.min.js"></script>
+    <script src="~/assets/client/assets/js/css_browser_selector.min.js"></script>
+    <script src="~/assets/client/assets/js/echo.min.js"></script>
+    <script src="~/assets/client/assets/js/jquery.easing-1.3.min.js"></script>
+    <script src="~/assets/client/assets/js/bootstrap-slider.min.js"></script>
+    <script src="~/assets/client/assets/js/jquery.raty.min.js"></script>
+    <script src="~/assets/client/assets/js/jquery.prettyPhoto.min.js"></script>
+    <script src="~/assets/client/assets/js/jquery.customSelect.min.js"></script>
+    <script src="~/assets/client/assets/js/wow.min.js"></script>
+    <script src="~/assets/client/assets/js/scripts.js"></script>
+    <!-- For demo purposes – can be removed on production -->
+
+    <script src="~/assets/client/switchstylesheet/switchstylesheet.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $(".changecolor").switchstylesheet( { seperator:"color"} );
+            $('.show-theme-options').click(function(){
+                $(this).parent().toggleClass('open');
+                return false;
+            });
+        });
+
+        $(window).bind("load", function() {
+           $('.show-theme-options').delay(2000).trigger('click');
+        });
+        
+       
+    </script>
+    <!-- For demo purposes – can be removed on production : End -->
+    <script src="http://w.sharethis.com/button/buttons.js"></script>
+    @*<iframe src="http://www.nhaccuatui.com/mh/background/dMzadrhXgLXg" width="1" height="1" frameborder="0" allowfullscreen></iframe>*@
+</html>
+@RenderSection("jsFooter", required: false)

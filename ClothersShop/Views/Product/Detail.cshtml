@@ -1,0 +1,234 @@
+﻿@model ClothersShop.Models.Product
+@{
+    ViewBag.Title = "Detail";
+    var category = (ClothersShop.Models.ProductCategory)ViewBag.Category;
+    var relatedProducts = (List<ClothersShop.Models.Product>)ViewBag.RelatedProducts;
+}
+    
+        <nav class="top-bar animate-dropdown">
+            <h1> Chi tiết sản phẩm</h1>
+        </nav>
+    
+
+<hr /><br /><p></p>
+    <div class="container">
+        <div class="row no-margin widgets-row">
+            <div class="content">
+
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#horizontalTab').easyResponsiveTabs({
+                            type: 'default', //Types: default, vertical, accordion
+                            width: 'auto', //auto or any width like 600px
+                            fit: true   // 100% fit in a container
+                        });
+                    });
+                </script>
+                <script language="javascript" type="text/javascript">
+                    $(document).ready(function () {
+                        $(document).on("click", "#nav a[href]", function () {
+                            $.ajax({
+                                url: $(this).attr("href"),
+                                type: 'GET',
+                                cache: false,
+                                success: function (result) {
+                                    $('#Comments').html(result);
+                                    $('html, body').animate({
+                                        scrollTop: $("#reviews").offset().top
+                                    }, 500);
+                                }
+                            });
+                            return false;
+                        });
+                    });
+                </script>
+
+                <div id="single-product">
+                    <div class="container">
+                        <div class="no-margin col-xs-12 col-sm-6 col-md-5 gallery-holder">
+                            <div class="product-item-holder size-big single-product-gallery small-gallery">
+                                <div id="owl-single-product">
+                                    <div class="single-product-gallery-item" id="slide1">
+                                        <a data-rel="prettyphoto" href="@Model.Image">
+                                            <img class="img-responsive" alt="" src="@Model.Image" width="353" />
+                                        </a>
+                                    </div><!-- /.single-product-gallery-item -->
+                                    <div class="single-product-gallery-item" id="slide2">
+                                        <a data-rel="prettyphoto" href="@Model.Image1">
+                                            <img class="img-responsive" alt="" src="@Model.Image1" />
+                                        </a>
+                                    </div><!-- /.single-product-gallery-item -->
+                                    <div class="single-product-gallery-item" id="slide3">
+                                        <a data-rel="prettyphoto" href="@Model.Image2">
+                                            <img class="img-responsive" alt="" src="@Model.Image2" />
+                                        </a>
+                                    </div><!-- /.single-product-gallery-item -->
+                                </div><!-- /.single-product-slider -->
+
+                                <div class="single-product-gallery-thumbs gallery-thumbs">
+                                    <div id="owl-single-product-thumbnails">
+                                        <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="0" href="#slide1">
+                                            <img width="67" alt="" src="@Model.Image" />
+                                        </a>
+                                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="1" href="#slide2">
+                                            <img width="67" alt="" src="@Model.Image1" />
+                                        </a>
+                                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide3">
+                                            <img width="67" alt="" src="@Model.Image2" />
+                                        </a>
+                                    </div><!-- /#owl-single-product-thumbnails -->
+
+                                </div><!-- /.gallery-thumbs -->
+                            </div><!-- /.single-product-gallery -->
+                        </div><!-- /.gallery-holder -->
+                        <div class="no-margin col-xs-12 col-sm-7 body-holder">
+                            <div class="body">
+                                @*<div class="star-holder inline"><div class="star" data-score="4"></div></div>*@
+                                <div class="availability">
+                                    <label>Tình trạng:</label> @if (@Model.Quantity > 0)
+                                    {<span class="available"> Còn hàng </span> }
+                                    else
+                                    {<span class="not-available">Hết hàng</span> }
+                                </div>
+                                <div class="title"><a href="#">@Model.Name</a></div>
+                                <div class="brand"></div>
+                                <div class="social-row">
+                                    <span class="st_facebook_hcount"></span>
+                                    <span class="st_twitter_hcount"></span>
+                                    <span class="st_pinterest_hcount"></span>
+                                </div>
+                                <div class="buttons-holder">
+                                    <label>Chia sẻ với bạn bè</label>
+                                </div>
+                                <div class="prices">
+                                    <div class="price-current">@string.Format("{0:0,0}", Model.Price) VNĐ</div>
+                                    @if (Model.Price != Model.PromotionPrice)
+                                    {<div class="price-prev">@string.Format("{0:0,0}", Model.PromotionPrice) </div>}
+                                </div>
+                                <div class="qnt-holder">
+
+                                    <div class="hover-area">
+                                        <div class="add-cart-button">
+                                            <h4><a href="/them-gio-hang?productId=@Model.ID&quantity=1" class="le-button">Thêm vào giỏ</a></h4>
+                                        </div>
+                                    </div><!-- /.qnt-holder -->
+                                </div><!-- /.body -->
+                            </div><!-- /.body-holder -->
+                        </div><!-- /.container -->
+                    </div><!-- /.single-product -->
+                    <!-- ========================================= SINGLE PRODUCT TAB ========================================= -->
+                    <section id="single-product-tab">
+                        <div class="container">
+                            <div class="tab-holder">
+
+                                <ul class="nav nav-tabs simple">
+                                    <li class="active"><a href="#description" data-toggle="tab">Mô tả</a></li>
+                                    <li><a href="#additional-info" data-toggle="tab">Cách phối đồ</a></li>
+                                    <li>
+                                        <a href="#reviews" data-toggle="tab">Bình luận</a>
+                                    </li>
+                                </ul><!-- /.nav-tabs -->
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="description">
+
+                                        <div class="meta-row">
+                                            Thông tin chi tiết sản phẩm @Model.Name
+                                    <div class="inline">
+                                        <label>@Html.Raw(@Model.Description)</label>
+                                        <span>
+                                    </div><!-- /.inline -->
+                                    <span class="seperator">/</span>
+                                    <div class="inline">
+
+                                    </div><!-- /.inline -->
+                                </div><!-- /.meta-row -->
+                            </div><!-- /.tab-pane #description -->
+                            <div class="tab-pane" id="additional-info">
+                                <h2>Cách phối đồ với @Model.Name</h2>
+                                @Html.Raw(@Model.MetaDescriptions)
+
+                            </div><!-- /.tab-pane #additional-info -->
+
+                            <div class="tab-pane" id="reviews">
+
+                                <div class="add-review row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <div class="new-review-form">
+                                            <script>
+                                                (function (d, s, id) {
+                                                    var js, fjs = d.getElementsByTagName(s)[0];
+                                                    if (d.getElementById(id)) return;
+                                                    js = d.createElement(s); js.id = id;
+                                                    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=146446775907128";
+                                                    fjs.parentNode.insertBefore(js, fjs);
+                                                }(document, 'script', 'facebook-jssdk'));</script>
+                                            <div class="fb-comments" data-href="http://localhost:50759" data-colorscheme="light"
+                                                 data-numposts="5" data-width="500"></div>
+                                        </div><!-- /.new-review-form -->
+                                    </div><!-- /.col -->
+                                </div><!-- /.add-review -->
+                            </div><!-- /.tab-pane #reviews -->
+                        </div><!-- /.tab-content -->
+                    </div><!-- /.tab-holder -->
+                </div><!-- /.container -->
+            </section> <div class="carousel-holder hover">
+
+                <div class="title-nav">
+                    <h2 class="h1">
+
+                        <h3>Sản phẩm liên quan</h3>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div class="product-grid-holder">
+                <div class="section group">
+                    @foreach (var item in relatedProducts)
+                    {
+                        var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                        <div class="product-grid-holder">
+                            <div class="col-sm-4 col-md-3  no-margin product-item-holder hover">
+                                <div class="product-item">
+                                    <a href="@url"><img src="@item.Image" alt=""></a>
+                                    <h2>@item.Name </h2>
+                                    <div class="price" style="border:none">
+                                        <div class="hover-area">
+                                            <div class="add-cart-button">
+                                                <h4><a href="/them-gio-hang?productId=@item.ID&quantity=1" class="le-button">Thêm vào giỏ</a></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+
+                    }
+
+                </div>
+            </div>
+
+
+            <script language="javascript" type="text/javascript">
+                $(document).ready(function () {
+                    $(document).on("click", "#nav a[href]", function () {
+                        $.ajax({
+                            url: $(this).attr("href"),
+                            type: 'GET',
+                            cache: false,
+                            success: function (result) {
+                                $('#Comments').html(result);
+                                $('html, body').animate({
+                                    scrollTop: $("#reviews").offset().top
+                                }, 500);
+                            }
+                        });
+                        return false;
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</div>
+</div>

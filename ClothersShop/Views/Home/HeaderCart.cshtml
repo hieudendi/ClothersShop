@@ -1,0 +1,65 @@
+﻿@model List<ClothersShop.Models.CartItem>
+
+
+
+
+<div class="top-cart-holder dropdown animate-dropdown">
+    <div class="basket">
+
+        <a class="dropdown-toggle" data-toggle="dropdown" href="/gio-hang">
+            <div class="basket-item-count">
+                <span class="count">@Model.Count</span>
+                <img src="~/assets/client/assets/images/icon-cart.png" alt="" />
+            </div>
+            <div class="total-price-basket">
+                <span class="lbl">Giỏ Hàng</span>
+                <span class="total-price">
+                    <span class="sign">Chi tiết</span><span class="value"></span>
+                </span>
+            </div>
+        </a>
+        <ul class="dropdown-menu">
+
+            @if (Model.Count > 0)
+            {
+                <li>
+                    @foreach (var item in Model)
+                    {
+                       
+                        <div class="basket-item">
+                            <div class="row">
+
+                                <div class="col-xs-4 col-sm-4 no-margin text-center">
+                                    <div class="thumb">
+                                        <img alt="" src="@item.Product.Image">
+                                    </div>
+                                </div>
+                                <div class="col-xs-8 col-sm-8 no-margin">
+                                   <div class="title">Tổng: @item.Quantity @item.Product.Name</div>
+                                    <div class="price">Thành tiền: @item.Product.Price.GetValueOrDefault(0).ToString("N0") VNĐ</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    }
+                    </li>
+                    
+                }
+            
+
+            <li class="checkout">
+                <div class="basket-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <a href="gio-hang" class="le-button inverse">Xem Giỏ Hàng</a>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <a href="thanh-toan" class="le-button">Thanh Toán</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div> 
+</div>
+

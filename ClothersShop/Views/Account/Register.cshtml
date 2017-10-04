@@ -1,0 +1,120 @@
+﻿@model ClothersShop.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    if(ViewBag.Thongbao!= null)
+    {
+        <label class="label-danger">@ViewBag.Thongbao</label>
+    }
+    @Html.AntiForgeryToken()
+    
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+   
+   
+
+
+    <main id="authentication" class="inner-bottom-md">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <section class="section sign-in inner-right-xs">
+                        <h2 class="bordered">Đăng ký tài khoản</h2>
+                        <h4>Tham gia và nhận ưu đãi ngay hôm nay!</h4>
+
+                        <div class="social-auth-buttons">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn-block btn-lg btn btn-facebook"><i class="fa fa-facebook"></i> Sign In with Facebook</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn-block btn-lg btn btn-twitter"><i class="fa fa-twitter"></i> Sign In with Twitter</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <div class="row main">
+                                <div class="main-login main-center">
+                                    <h5></h5>
+                                    <form class="" method="post" action="#">
+
+                                        <div class="form-group">
+                                            <label for="name" class="cols-sm-2 control-label">Tên của bạn</label>
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                                    <input type="text" class="form-control" name="name" id="name" placeholder="tên bạn" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email" class="cols-sm-2 control-label">Email</label>
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="password" class="cols-sm-2 control-label">Mật khẩu</label>
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirm" class="cols-sm-2 control-label">Nhập lại Mật khẩu</label>
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <input type="submit" class="btn btn-default" value="Register" />
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section><!-- /.sign-in -->
+                </div><!-- /.col -->
+
+                <div class="col-md-6">
+                    <section class="section register inner-left-xs">
+                       
+                        <h2 class="semi-bold">Đăng ký ngay để được:</h2>
+
+                        <ul class="list-unstyled list-benefits">
+                            <li><i class="fa fa-check primary-color"></i> Tham gia nhiều khuyễn mãi từ shop!</li>
+                            <li><i class="fa fa-check primary-color"></i> Có cơ hội nhận những phần thưởng hấp dẫn từ shop!</li>
+                            <li><i class="fa fa-check primary-color"></i> Mua hàng nhanh chóng với mọi hình thức thanh toán!</li>
+                        </ul>
+
+                    </section><!-- /.register -->
+
+                </div><!-- /.col -->
+
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </main>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

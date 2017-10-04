@@ -1,0 +1,17 @@
+﻿@model List<ClothersShop.Models.Menu>
+
+
+<div class="account_desc">
+    <ul>
+
+                @foreach (var item in Model)
+                {
+
+                    <li><li><a href="@item.Link" target="@item.Target">@item.Text </a></li> </li>
+
+
+        }
+    </ul>
+</div><!-- /.navbar -->
+<div class="clear"></div>
+

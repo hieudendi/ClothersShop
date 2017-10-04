@@ -1,0 +1,73 @@
+﻿@model List<ClothersShop.Models.CartItem>
+@{
+    ViewBag.Title = "Index";
+}
+@section jsFooter{
+
+    <script src="~/Content/js/controller/cartController.js"></script>
+}
+
+
+<section id="cart-page">
+    
+    
+        
+        <div class="table-condensed">
+            @if (Model.Count > 0)
+            {
+                <h1> <span class="label label-danger">Giỏ Hàng Của Bạn!</span></h1>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="success">
+                           
+                            <th>Tên SP</th>
+                            <th>Ảnh SP</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Thành tiền</th>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="info">
+                                
+                                <td><b>@item.Product.Name</b></td>
+                                <td><img src="@item.Product.Image" width="100" /></td>
+                                @*<td><input type="text" class="txtQuantity" data-id="@item.Product.ID" value="@item.Quantity" /></td>*@
+                                <td>
+                                    <div class="quantity">
+                                        <div class="le-quantity">
+                                            <form>
+                                                <a class="minus" href="#reduce"></a>
+                                                <input name="quantity" readonly="readonly" type="text" class="txtQuantity" data-id="@item.Product.ID" value="@item.Quantity">
+                                                <a class="plus" href="#add"></a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>@item.Product.Price.GetValueOrDefault(0).ToString("N0")</td>
+                                <td>@((item.Product.Price.GetValueOrDefault(0) * item.Quantity).ToString("N0"))</td>
+                                <td><a href="#" data-id="@item.Product.ID" class="btn btn-danger">Xoá</a></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+                    <button id="btnContinue" class="btn btn-primary">Tiếp tục mua hàng</button>
+                    <button id="btnUpdate" class="btn btn-info">Cập nhật giỏ hàng</button>
+                    <button id="btnDeleteAll" class="btn btn-danger">Xoá giỏ hàng</button>
+                    <button id="btnPayment" class="btn btn-success">Thanh toán</button>
+            }
+            else
+            {
+                <div class="text-center">
+                    <span class="alert alert-danger">Bạn chưa thêm sản phẩm nào vào giỏ hàng<br/><br /><br /> Vui lòng lựa chọn sản phẩm bạn yêu thích và thêm vào giỏ hàng!</span>
+                </div>
+            }
+
+        </div>
+        
+</section>

@@ -1,0 +1,18 @@
+﻿@model ClothersShop.Models.Contact
+@{
+    ViewBag.Title = "Index";
+   
+}
+@section jsFooter{
+   
+var contentString = '@Html.Raw(Model.Content)';
+}
+<div class="container">
+    <div class="oauth">
+        <table class="table-bordered group">
+            <h2>Giới Thiệu về HPSHOP</h2>
+            @Html.Raw(Model.Content)
+            
+        </table>
+    </div>
+</div>

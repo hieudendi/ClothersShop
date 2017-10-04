@@ -1,0 +1,35 @@
+﻿@model List<ClothersShop.Models.Slide>
+@{
+    var slides = (List<ClothersShop.Models.Slide>)ViewBag.Slides;
+}
+<div class="container">
+    <div class="col-xs-12" style="
+         height 500px;
+         ">
+        <div id="hero">
+            <div id="owl-main" class="owl-carousel height-lg owl-inner-nav owl-ui-lg">
+                @foreach (var item in slides)
+            {
+
+                    <div class="item">
+                        <img style="width:100%" height="600" src="@item.Image" alt="Tưng bừng khuyến mãi">
+                        <div class="container-fluid">
+                            <div class="caption vertical-center text-left right" style="padding-right:0;">
+                                <div class="big-text fadeInDown-1">
+                                    Ưu đãi lớn
+                                </div>
+
+                                <div class="small fadeInDown-2">
+                                    @item.Description
+                                </div>
+                                <div class="button-holder fadeInDown-3">
+                                    <a href="@item.Link" class="big le-button ">Tham Gia Ngay</a>
+                                </div>
+                            </div><!-- /.caption -->
+                        </div><!-- /.container-fluid -->
+                    </div><!-- /.item -->
+                }
+            </div>
+        </div>
+    </div>
+</div>

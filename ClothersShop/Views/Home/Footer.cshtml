@@ -1,0 +1,116 @@
+﻿@model List<ClothersShop.Models.Menu>
+
+    <footer id="footer" >
+        @*<div class="wrapper">*@
+            <div class="link-list-row">
+                <div class="container no-padding">
+                    <div class="col-xs-12 col-md-4 ">
+                        <!-- ============================================================= CONTACT INFO ============================================================= -->
+                        <div class="contact-info">
+                            <!-- ============================================================= LOGO ============================================================= -->
+                            <div class="logo">
+                                <a href="#">
+                                    <img alt="logo" src="~/assets/client/assets/images/logo.png" width="300" height="90" />
+
+                                </a>
+                            </div><!-- /.logo -->
+
+                            <p class="regular-bold"> Liên hệ với chúng tôi hoàn toàn miễn phí</p>
+
+                            <p>
+                                525/9/17 Đường Quang Trung, Phường 10, Quận Gò Vấp
+                                Điện Thoại: 0987619491
+                            </p>
+
+                            <div class="social-icons">
+                                <h3>Kết Nối với chúng tôi</h3>
+                                <ul>
+                                    <li><a href="http://facebook.com/yeunhac.net" class="fa fa-facebook"></a></li>
+                                    <li><a href="#" class="fa fa-twitter"></a></li>
+                                    <li><a href="#" class="fa fa-pinterest"></a></li>
+                                    <li><a href="#" class="fa fa-linkedin"></a></li>
+                                    <li><a href="#" class="fa fa-stumbleupon"></a></li>
+                                    <li><a href="#" class="fa fa-dribbble"></a></li>
+                                    <li><a href="#" class="fa fa-vk"></a></li>
+                                </ul>
+                            </div><!-- /.social-icons -->
+
+                        </div>
+                        <!-- ============================================================= CONTACT INFO : END ============================================================= -->
+                    </div>
+
+                    <div class="col-xs-12 col-md-8 no-margin">
+                        <!-- ============================================================= LINKS FOOTER ============================================================= -->
+                        <div class="link-widget">
+                            <div class="widget">
+                                <h3>Menu Nhanh</h3>
+                                <ul>
+                                    @foreach (var item in Model)
+                                    {
+                                        <ul> <li><a href="@item.Link" target="@item.Target">@item.Text </a></li></ul>
+                                    }
+                                </ul>
+                            </div><!-- /.widget -->
+                        </div><!-- /.link-widget -->
+
+                        <div class="link-widget">
+                            <div class="widget">
+                                <h3>Thông tin về HPshop</h3>
+                                <ul>
+                                    <li><a href="#">Cửa hàng của chúng tôi</a></li>
+                                    <li><a href="#">Thông tin</a></li>
+                                    <li><a href="#">Xếp hạng</a></li>
+                                    <li><a href="#">Liên hệ</a></li>
+
+                                </ul>
+                            </div><!-- /.widget -->
+                        </div><!-- /.link-widget -->
+
+                        <div class="link-widget">
+                            <div class="widget">
+                                <h3>Information</h3>
+                                <ul>
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">Order Tracking</a></li>
+                                    <li><a href="#">Wish List</a></li>
+                                    <li><a href="#">Customer Service</a></li>
+                                </ul>
+                            </div><!-- /.widget -->
+                        </div><!-- /.link-widget -->
+                        <!-- ============================================================= LINKS FOOTER : END ============================================================= -->
+                    </div>
+                </div><!-- /.container -->
+            </div><!-- /.link-list-row -->
+
+
+
+
+
+
+
+
+            <div class="copyright-bar">
+                <div class="container">
+                    <div class="col-xs-12 col-sm-6 no-margin">
+                        <div class="copyright">
+                            &copy; <a href="home">Right by Trung Hiếu</a> - all rights reserved
+                        </div><!-- /.copyright -->
+                    </div>
+                    <div class="col-xs-12 col-sm-6 no-margin">
+                        <div class="payment-methods ">
+
+                            <ul>
+                                <font color="White"> Thanh toán liên kết</font>
+                                <li><img alt="" src="~/assets/client/assets/images/payments/payment-visa.png"></li>
+                                <li><img alt="" src="~/assets/client/assets/images/payments/payment-master.png"></li>
+                                <li><img alt="" src="~/assets/client/assets/images/payments/payment-paypal.png"></li>
+                                <li><img alt="" src="~/assets/client/assets/images/payments/payment-skrill.png"></li>
+                            </ul>
+                        </div><!-- /.payment-methods -->
+                    </div>
+                </div><!-- /.container -->
+            </div><!-- /.copyright-bar -->
+            </div>
+</footer><!-- /#footer -->
+
+
