@@ -1,5 +1,5 @@
 ﻿using ClothersShop.Models;
-
+using ClothersShop.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +25,36 @@ namespace Model.Dao
             db.SaveChanges();
             return entity.ID;
         }
-        public List<Product> ListByCategoryId(long categoryID)
+        public List<ProductViewModel> ListByCategoryId(long categoryID, ref int totalRecord, int pageIndex = 1, int pageSize = 2)
         {
-
-            return db.Products.Where(x => x.CategoryID == categoryID).ToList();
+            totalRecord = db.Products.Where(x => x.CategoryID == categoryID).Count();
+            var model = (from a in db.Products
+                         join b in db.ProductCategories
+                         on a.CategoryID equals b.ID
+                         where a.CategoryID == categoryID
+                         select new
+                         {
+                             CateMetaTitle = b.MetaTitle,
+                             CateName = b.Name,
+                             CreatedDate = a.CreatedDate,
+                             ID = a.ID,
+                             Images = a.Image,
+                             Name = a.Name,
+                             MetaTitle = a.MetaTitle,
+                             Price = a.Price
+                         }).AsEnumerable().Select(x => new ProductViewModel()
+                         {
+                             CateMetaTitle = x.MetaTitle,
+                             CateName = x.Name,
+                             CreatedDate = x.CreatedDate,
+                             ID = x.ID,
+                             Images = x.Images,
+                             Name = x.Name,
+                             MetaTitle = x.MetaTitle,
+                             Price = x.Price
+                         });
+            model.OrderByDescending(x => x.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            return model.ToList();
         }
 
         public bool Update(Product entity)
@@ -95,7 +121,7 @@ namespace Model.Dao
         }
         public List<Product> ListAllProduct(int top)
         {
-            return db.Products.Where(x => x.TopHot != null).Take(top).ToList();
+            return db.Products.Take(top).ToList();
         }
         public List<Product> ListFeatureProduct(int top)
         {
@@ -114,37 +140,38 @@ namespace Model.Dao
         {
             return db.Products.Where(x => x.Name.Contains(keyword)).Select(x => x.Name).ToList();
         }
-        //public List<ProductViewModel> Search(string keyword, ref int totalRecord, int pageIndex = 1, int pageSize = 2)
-        //{
-        //    totalRecord = db.Products.Where(x => x.Name == keyword).Count();
-        //    var model = (from a in db.Products
-        //                 join b in db.ProductCategories
-        //                 on a.CategoryID equals b.ID
-        //                 where a.Name.Contains(keyword)
-        //                 select new
-        //                 {
-        //                     CateMetaTitle = b.MetaTitle,
-        //                     CateName = b.Name,
-        //                     CreatedDate = a.CreatedDate,
-        //                     ID = a.ID,
-        //                     Images = a.Image,
-        //                     Name = a.Name,
-        //                     MetaTitle = a.MetaTitle,
-        //                     Price = a.Price,
-        //                 }).AsEnumerable().Select(x => new ProductViewModel()
-        //                 {
-        //                     CateMetaTitle = x.MetaTitle,
-        //                     CateName = x.Name,
-        //                     CreatedDate = x.CreatedDate,
-        //                     ID = x.ID,
-        //                     Images = x.Images,
-        //                     Name = x.Name,
-        //                     MetaTitle = x.MetaTitle,
-        //                     Price = x.Price
-        //                 });
-        //    model.OrderByDescending(x => x.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-        //    return model.ToList();
-        //}
+        public List<ProductViewModel> Search(string keyword, ref int totalRecord, int pageIndex = 1, int pageSize = 2)
+        {
+            totalRecord = db.Products.Where(x => x.Name == keyword).Count();
+            var model = (from a in db.Products
+                         join b in db.ProductCategories
+                         on a.CategoryID equals b.ID
+                         where a.Name.Contains(keyword)
+                         select new
+                         {
+                             CateMetaTitle = b.MetaTitle,
+                             CateName = b.Name,
+                             CreatedDate = a.CreatedDate,
+                             ID = a.ID,
+                             Images = a.Image,
+                             Name = a.Name,
+                             MetaTitle = a.MetaTitle,
+                             Price = a.Price,
+                         }).AsEnumerable().Select(x => new ProductViewModel()
+                         {
+                             CateMetaTitle = x.MetaTitle,
+                             CateName = x.Name,
+                             CreatedDate = x.CreatedDate,
+                             ID = x.ID,
+                             Images = x.Images,
+                             Name = x.Name,
+                             MetaTitle = x.MetaTitle,
+                             Price = x.Price
+                         });
+            model.OrderByDescending(x => x.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            return model.ToList();
+        }
+       
 
     }
 }

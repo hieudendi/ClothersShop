@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Trang chủ";
+
+    var AllProduct = (List<ClothersShop.Models.Product>)ViewBag.ListAllProduct;
+}
+<div class="container">
+    <div class="product-grid-holder">
+        <div id="spnoibat">
+            @foreach (var item in AllProduct)
+            {
+                var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                <div class="product-grid-holder">
+                    <div class="col-sm-4 col-md-3  no-margin product-item-holder hover">
+                        <div class="product-item">
+                            <div class="ribbon blue"><span>new!</span></div>
+                            @if (item.TopHot != null)
+                            {<div class="ribbon red"><span>HOT!</span></div>}
+                            @if (item.PromotionPrice != null)
+                {<div class="ribbon green"><span>ON SALE!</span></div>}
+                          
+
+                                <div class="grid_1_of_4 /Content/Client/images_1_of_4">
+                                    <a href="@url"><img src="@item.Image" alt="@item.Name" width="100%" height="100%" /></a>
+                                    <h2>Tên Sản phẩm: @item.Name </h2>
+                                    <div class="prices">
+                                        @if (item.PromotionPrice != null)
+                                        {
+                                            <div class="price-current">Giá tiền: @string.Format("{0:0,0}", item.PromotionPrice) VNĐ</div>
+                                            <div class="price-prev"><strike>@string.Format("{0:0,0}", item.Price)</strike> </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="price-current">Giá tiền: @string.Format("{0:0,0}", item.Price) VNĐ</div>
+                                        }
+                                    </div>
+
+
+
+                                    <div class="hover-area">
+                                        <div class="add-cart-button">
+                                            <h4><a href="/them-gio-hang?productId=@item.ID&quantity=1" class="le-button">Thêm vào giỏ</a></h4>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                    </div>
+
+                </div>
+
+
+            }
+        </div>
+    </div>
+    </div>

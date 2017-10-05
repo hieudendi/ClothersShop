@@ -205,6 +205,7 @@
     <Compile Include="Areas\Admin\Controllers\SlidesController.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\MailHelper.cs" />
+    <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -227,6 +228,26 @@
     <Compile Include="Migrations\201710021345399_InitialData.cs" />
     <Compile Include="Migrations\201710021345399_InitialData.Designer.cs">
       <DependentUpon>201710021345399_InitialData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710050234457_update.cs" />
+    <Compile Include="Migrations\201710050234457_update.Designer.cs">
+      <DependentUpon>201710050234457_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710050237561_update2.cs" />
+    <Compile Include="Migrations\201710050237561_update2.Designer.cs">
+      <DependentUpon>201710050237561_update2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710050249300_update3.cs" />
+    <Compile Include="Migrations\201710050249300_update3.Designer.cs">
+      <DependentUpon>201710050249300_update3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710050251232_themten.cs" />
+    <Compile Include="Migrations\201710050251232_themten.Designer.cs">
+      <DependentUpon>201710050251232_themten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710050252398_addTen.cs" />
+    <Compile Include="Migrations\201710050252398_addTen.Designer.cs">
+      <DependentUpon>201710050252398_addTen.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
@@ -565,6 +586,9 @@
     <Content Include="assets\client\switchstylesheet\switchstylesheet.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\login.png" />
+    <Content Include="Content\images\logout.png" />
+    <Content Include="Content\images\signup.png" />
     <Content Include="Content\images\somicaro.jpg" />
     <Content Include="Content\images\somicaro1.jpg" />
     <Content Include="Content\images\somicaro2.jpg" />
@@ -787,6 +811,7 @@
     <Content Include="Views\Home\HeaderCart.cshtml" />
     <Content Include="Views\Cart\Payment.cshtml" />
     <Content Include="Views\Cart\Success.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -805,6 +830,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710021345399_InitialData.resx">
       <DependentUpon>201710021345399_InitialData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710050234457_update.resx">
+      <DependentUpon>201710050234457_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710050237561_update2.resx">
+      <DependentUpon>201710050237561_update2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710050249300_update3.resx">
+      <DependentUpon>201710050249300_update3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710050251232_themten.resx">
+      <DependentUpon>201710050251232_themten.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710050252398_addTen.resx">
+      <DependentUpon>201710050252398_addTen.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

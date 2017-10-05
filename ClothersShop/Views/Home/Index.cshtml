@@ -35,8 +35,11 @@
                                     <div class="col-sm-4 col-md-3  no-margin product-item-holder hover">
                                         <div class="product-item">
                                             <div class="ribbon blue"><span>new!</span></div>
+                                            @if (item.TopHot != null)
+                                            {<div class="ribbon red"><span>HOT!</span></div>}
                                             @if (item.PromotionPrice != null)
-                                            {<div class="ribbon green"><span>ON SALE!</span></div>}
+                {<div class="ribbon green"><span>ON SALE!</span></div>}
+                                           
 
                                             <div class="grid_1_of_4 /Content/Client/images_1_of_4">
                                                 <a href="@url"><img src="@item.Image" alt="@item.Name" width="100%" height="100%" /></a>
@@ -93,9 +96,12 @@
 
                                     <div class="col-sm-4 col-md-3  no-margin product-item-holder hover">
                                         <div class="product-item">
-                                            <div class="ribbon red"><span>HOT!</span></div>
+                                            @if (item.TopHot != null)
+                                            {<div class="ribbon red"><span>HOT!</span></div>}
+                                            <div class="ribbon blue"><span>new!</span></div>
                                             @if (item.PromotionPrice != null)
-                                            {<div class="ribbon green"><span>ON SALE!</span></div>}
+                {<div class="ribbon green"><span>ON SALE!</span></div>}
+                                           
                                             <div class="grid_1_of_4 /Content/Client/images_1_of_4">
                                                 <a href="@url"><img src="@item.Image" alt="@item.Name" width="100%" height="100%"/></a>
                                                 <h2>Tên Sản phẩm: @item.Name </h2>

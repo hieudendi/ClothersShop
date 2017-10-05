@@ -79,7 +79,11 @@ namespace ClothersShop.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "Mật khẩu không trùng khớp.")]
         public string ConfirmPassword { get; set; }
-        
+        [Required]
+        [StringLength(100, ErrorMessage = "Tên của bạn không được quá {2} ký tự.")]
+        [Display(Name = "Họ Tên")]
+        public string Ten { get; set; }
+
     }
 
     public class ResetPasswordViewModel

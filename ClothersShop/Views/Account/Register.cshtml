@@ -52,8 +52,8 @@
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                    <input type="text" class="form-control" name="name" id="name" placeholder="tên bạn" />
-                                                </div>
+                                                    @Html.TextBoxFor(m => m.Ten, new { @class = "form-control" })
+                                               </div>
                                             </div>
                                         </div>
                                         <div class="form-group">

@@ -9,15 +9,16 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ClothersShop.Models;
+using ClothersShop.Common;
 
 namespace ClothersShop.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private ApplicationSignInManager _signInManager;
+        private ApplicationDbContext context = new ApplicationDbContext();
         public AccountController()
         {
         }
@@ -96,6 +97,15 @@ namespace ClothersShop.Controllers
             {
                 case SignInStatus.Success:
                     {
+                        var sess = new UserLogin();
+                        sess.Email = model.Email;
+                        sess.Password = model.Password;
+                        if (context.Users.SingleOrDefault(m => m.Email == model.Email).Email == model.Email)
+                        {
+                            sess.Name = context.Users.SingleOrDefault(m => m.Email == model.Email).Ten.ToString();
+                        }
+
+                        Session.Add(CommonConstans.USER_SESSION, sess);
                         return RedirectToLocal(returnUrl);
                     }
                 case SignInStatus.LockedOut:
@@ -170,7 +180,7 @@ namespace ClothersShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Ten=model.Ten };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
