@@ -15,7 +15,7 @@ namespace ClothersShop
 
             routes.MapRoute(
                 name: "Product Category",
-                url: "san-pham/{metatitle}-{id}",
+                url: "san-pham/{metatitle}-{cateId}",
                 defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional },
                 namespaces: new[] { "ClothersShop.Controllers" }
             );

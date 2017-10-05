@@ -1,5 +1,6 @@
 ﻿using ClothersShop.Models;
 using ClothersShop.ViewModel;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,13 +26,13 @@ namespace Model.Dao
             db.SaveChanges();
             return entity.ID;
         }
-        public List<ProductViewModel> ListByCategoryId(long categoryID, ref int totalRecord, int pageIndex = 1, int pageSize = 2)
+        public List<ProductViewModel> ListByCategoryId(long cateID, ref int totalRecord, int pageIndex = 1, int pageSize = 2)
         {
-            totalRecord = db.Products.Where(x => x.CategoryID == categoryID).Count();
+            totalRecord = db.Products.Where(x => x.CategoryID == cateID).Count();
             var model = (from a in db.Products
                          join b in db.ProductCategories
                          on a.CategoryID equals b.ID
-                         where a.CategoryID == categoryID
+                         where a.CategoryID == cateID
                          select new
                          {
                              CateMetaTitle = b.MetaTitle,
@@ -41,7 +42,9 @@ namespace Model.Dao
                              Images = a.Image,
                              Name = a.Name,
                              MetaTitle = a.MetaTitle,
-                             Price = a.Price
+                             Price = a.Price,
+                             TopHot = a.TopHot,
+                             PromotionPrice = a.PromotionPrice
                          }).AsEnumerable().Select(x => new ProductViewModel()
                          {
                              CateMetaTitle = x.MetaTitle,
@@ -51,7 +54,9 @@ namespace Model.Dao
                              Images = x.Images,
                              Name = x.Name,
                              MetaTitle = x.MetaTitle,
-                             Price = x.Price
+                             Price = x.Price,
+                             TopHot = x.TopHot,
+                             PromotionPrice = x.PromotionPrice
                          });
             model.OrderByDescending(x => x.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             return model.ToList();
@@ -98,16 +103,16 @@ namespace Model.Dao
                 return false;
             }
         }
-        //public IEnumerable<Product> ListAllPaging(string searchString, int page, int pageSize)
-        //{
-        //    IQueryable<Product> model = db.Products;
-        //    if (!string.IsNullOrEmpty(searchString))
-        //    {
-        //        model = model.Where(x => x.Name.Contains(searchString) || x.CreatedBy.Contains(searchString));
-        //    }
+        public IEnumerable<Product> ListAllPaging(string searchString, int page, int pageSize)
+        {
+            IQueryable<Product> model = db.Products;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.Name.Contains(searchString) || x.CreatedBy.Contains(searchString));
+            }
 
-        //    return model.OrderByDescending(x => x.CreatedDate).ToPagedList(page, pageSize);
-        //}
+            return model.OrderByDescending(x => x.CreatedDate).ToPagedList(page, pageSize);
+        }
         public bool ChangeStatus(long id)
         {
             var product = db.Products.Find(id);
@@ -157,6 +162,8 @@ namespace Model.Dao
                              Name = a.Name,
                              MetaTitle = a.MetaTitle,
                              Price = a.Price,
+                             TopHot= a.TopHot,
+                             PromotionPrice =a.PromotionPrice
                          }).AsEnumerable().Select(x => new ProductViewModel()
                          {
                              CateMetaTitle = x.MetaTitle,
@@ -166,7 +173,9 @@ namespace Model.Dao
                              Images = x.Images,
                              Name = x.Name,
                              MetaTitle = x.MetaTitle,
-                             Price = x.Price
+                             Price = x.Price,
+                             TopHot = x.TopHot,
+                             PromotionPrice = x.PromotionPrice
                          });
             model.OrderByDescending(x => x.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             return model.ToList();

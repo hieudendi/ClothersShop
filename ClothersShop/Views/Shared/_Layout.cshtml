@@ -94,25 +94,23 @@
                         </div>
                     </div><!-- /.contact-row -->
                     <!-- ============================================================= SEARCH AREA ============================================================= -->
-                    <div class="search-area">
-                        <form>
-                            <div class="control-group">
-                                <input class="search-field" placeholder="Bạn muốn tìm?" />
-                                <ul class="categories-filter animate-dropdown">
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="category-grid.html">Tất cả</a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">Giày</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">Áo sơ mi</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">Áo đôi</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">Áo khoác</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">Phụ kiện</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <a class="search-button" href="#"></a>
-                            </div>
-                        </form>
+                   <div class="search-area" style="height:55px">
+             <div class="control-group">
+                 <form action="/tim-kiem" method="get">
+                     <input type="text" class="search-field" value="Bạn Muốn Tìm Gì?" id="txtKeyword" name="keyword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Bạn Muốn Tìm?'}">
+                      <ul class="categories-filter animate-dropdown">
+                         <li class="dropdown">
+                             <a class="dropdown-toggle" data-toggle="dropdown" href="/Category">Tât cả</a>
+                             <ul class="dropdown-menu" role="menu">
+                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/Product/ListByCateId?id=1">Điện Thoại</a></li>
+                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/Product/ListByCateId?id=2">Ốp Lưng</a></li>
+                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/Product/ListByCateId?id=3">Tai Nghe</a></li>
+                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/Product/ListByCateId?id=1">Sạc Dự Phòng</a></li>
+                             </ul>
+                         </li>
+                     </ul><input type="submit" class="search-button" value="Tìm">
+                 </form>
+</div>
                     </div><!-- /.search-area -->
                     <!-- ============================================================= SEARCH AREA : END ============================================================= -->
                 </div><!-- /.top-search-holder -->
@@ -147,10 +145,10 @@
 
          
             <!-- ============================================================= HEADER : END ============================================================= -->      
-             <div div style="background-image:url(http://www.designbolts.com/wp-content/uploads/2013/02/Grunge-Seamless-Pattern-For-Website-Background.jpg);border-radius: 20px; padding: 5px; margin:5%; margin-top:0px; margin-bottom: 0px;  border: 0px solid #FF1493; word-wrap: break-word;">
+             <div div style="background-image:url(/Content/images/background.jpg);border-radius: 20px; padding: 5px;padding-bottom: 25px; margin:5%; margin-top:0px; margin-bottom: 0px;  border: 0px solid #FF1493; word-wrap: break-word;">
                 @RenderBody()
                  @RenderSection("scripts", required: false)
-            </div>                                                                                                                                                   
+                 <hr></div>                                                                                                                                                   
 
           
    
@@ -204,4 +202,5 @@
     <script src="http://w.sharethis.com/button/buttons.js"></script>
     @*<iframe src="http://www.nhaccuatui.com/mh/background/dMzadrhXgLXg" width="1" height="1" frameborder="0" allowfullscreen></iframe>*@
 </html>
+<script src="~/Content/js/controller/baseController.js"></script>
 @RenderSection("jsFooter", required: false)

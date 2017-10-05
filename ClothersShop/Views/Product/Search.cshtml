@@ -1,10 +1,10 @@
-﻿@model List<ClothersShop.ViewModel.ProductViewModel>
+﻿
+@model List<ClothersShop.ViewModel.ProductViewModel>
 @{
-    var category = (ClothersShop.Models.ProductCategory)ViewBag.Category;
-    ViewBag.Title = category.Name;
-    Layout = "~/Views/Shared/_Layout.cshtml";
-
+    ViewBag.Title = "Search";
+   
 }
+
 <div class="container">
     <div class="row no-margin widgets-row">
 
@@ -12,12 +12,12 @@
             <tr class="info">
                 <div class="content_top">
                     <div class="heading">
-                        <h1><li>@category.Name<br /></li></h1>
+                        <h1><li>Kết quả tìm kiếm theo từ khoá: @ViewBag.Keyword<br /></li></h1>
                         <p></p>
-
+                        
                     </div>
                     <div class="see">
-                        <button class="btn btn-default" style="text-align: center"> <p><a href="/san-pham"><b>Xem tất cả sản phẩm</b></a></p></button>
+                       <button class="btn btn-default" style="text-align: center"> <p><a href="/san-pham"><b>Xem tất cả sản phẩm</b></a></p></button>
                     </div><hr>
                     <div class="clear"></div>
                 </div>
@@ -46,7 +46,7 @@
                                                 @if (item.PromotionPrice != null)
                                                 {
                                                     <div class="price-current">Giá tiền: @string.Format("{0:0,0}", item.PromotionPrice) VNĐ</div>
-                                                    <div class="price-prev"><strike>@string.Format("{0:0,0}", item.Price)</strike> </div>
+                                                        <div class="price-prev"><strike>@string.Format("{0:0,0}", item.Price)</strike> </div>
                                                 }
                                                 else
                                                 {
@@ -87,9 +87,9 @@
                                     @if (currentPage > ViewBag.First)
                                     {
                                         <li><a href="@link&page=@ViewBag.First" title="Trang đầu" class="first"><i class="fa fa-angle-double-left"></i></a></li>
-                                        <li>
-                                            <a href="@link&page=@ViewBag.Prev" title="Trang trước" class="prev"><i class="fa fa-angle-left"></i></a>
-                                        </li>
+                                            <li>
+                                                <a href="@link&page=@ViewBag.Prev" title="Trang trước" class="prev"><i class="fa fa-angle-left"></i></a>
+                                            </li>
 
                                     }
                                     @for (int i = startPageIndex; i <= endPageIndex; i++)
@@ -107,7 +107,7 @@
                                     @if (currentPage < totalPage)
                     {
                                         <li><a href="@link&page=@ViewBag.Next" class="next" title="Trang sau"><i class="fa fa-angle-right"></i></a></li>
-                                        <li> <a href="@link&page=@ViewBag.Last" class="last" title="Trang cuối"><i class="fa fa-angle-double-right"></i></a></li>
+                                            <li> <a href="@link&page=@ViewBag.Last" class="last" title="Trang cuối"><i class="fa fa-angle-double-right"></i></a></li>
                                     }
 
                                 </ul>
@@ -127,3 +127,4 @@
         </div>
     </div>
 </div>
+    

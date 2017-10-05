@@ -29,9 +29,9 @@ namespace Model.Dao
         {
             return db.Categories.Where(x=>x.Status== true).ToList(); 
         }
-        public Category ViewDetail(long id)
+        public ProductCategory ViewDetail(long id)
         {
-            return db.Categories.Find(id);
+            return db.ProductCategories.Find(id);
         }
         public bool Update(Category entity)
         {

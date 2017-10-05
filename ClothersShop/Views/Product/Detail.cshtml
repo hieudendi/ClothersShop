@@ -50,7 +50,7 @@
                                 <div id="owl-single-product">
                                     <div class="single-product-gallery-item" id="slide1">
                                         <a data-rel="prettyphoto" href="@Model.Image">
-                                            <img class="img-responsive" alt="" src="@Model.Image" width="353" />
+                                            <img class="img-responsive" alt="" src="@Model.Image" width="100%" height="100%" />
                                         </a>
                                     </div><!-- /.single-product-gallery-item -->
                                     <div class="single-product-gallery-item" id="slide2">
@@ -132,20 +132,20 @@
                                     <div class="tab-pane active" id="description">
 
                                         <div class="meta-row">
-                                            Thông tin chi tiết sản phẩm @Model.Name
+                                            <h1>Thông tin chi tiết sản phẩm @Model.Name</h1>
                                     <div class="inline">
-                                        <label>@Html.Raw(@Model.Description)</label>
+                                        <label><h2>@Html.Raw(@Model.Description)</h2></label>
                                         <span>
                                     </div><!-- /.inline -->
-                                    <span class="seperator">/</span>
+                                    <span class="seperator"></span>
                                     <div class="inline">
 
                                     </div><!-- /.inline -->
                                 </div><!-- /.meta-row -->
                             </div><!-- /.tab-pane #description -->
                             <div class="tab-pane" id="additional-info">
-                                <h2>Cách phối đồ với @Model.Name</h2>
-                                @Html.Raw(@Model.MetaDescriptions)
+                                <h1>Cách phối đồ với @Model.Name</h1>
+                                <h2>@Html.Raw(@Model.MetaDescriptions)</h2>
 
                             </div><!-- /.tab-pane #additional-info -->
 
@@ -162,7 +162,7 @@
                                                     js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=146446775907128";
                                                     fjs.parentNode.insertBefore(js, fjs);
                                                 }(document, 'script', 'facebook-jssdk'));</script>
-                                            <div class="fb-comments" data-href="http://localhost:50759" data-colorscheme="light"
+                                            <div class="fb-comments" data-href="http://localhost:62136/chi-tiet/@Model.MetaTitle-@Model.ID" data-colorscheme="light"
                                                  data-numposts="5" data-width="500"></div>
                                         </div><!-- /.new-review-form -->
                                     </div><!-- /.col -->
@@ -189,18 +189,41 @@
                         <div class="product-grid-holder">
                             <div class="col-sm-4 col-md-3  no-margin product-item-holder hover">
                                 <div class="product-item">
-                                    <a href="@url"><img src="@item.Image" alt=""></a>
-                                    <h2>@item.Name </h2>
-                                    <div class="price" style="border:none">
+                                    <div class="ribbon blue"><span>new!</span></div>
+                                    @if (item.TopHot != null)
+                                    {<div class="ribbon red"><span>HOT!</span></div>}
+                                    @if (item.PromotionPrice != null)
+                                    {<div class="ribbon green"><span>ON SALE!</span></div>}
+
+
+                                    <div class="grid_1_of_4 /Content/Client/images_1_of_4">
+                                        <a href="@url"><img src="@item.Image" alt="@item.Name" width="100%" height="100%" /></a>
+                                        <h2>Tên Sản phẩm: @item.Name </h2>
+                                        <div class="prices">
+                                            @if (item.PromotionPrice != null)
+                                            {
+                                                <div class="price-current">Giá tiền: @string.Format("{0:0,0}", item.PromotionPrice) VNĐ</div>
+                                                    <div class="price-prev"><strike>@string.Format("{0:0,0}", item.Price)</strike> </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="price-current">Giá tiền: @string.Format("{0:0,0}", item.Price) VNĐ</div>
+                                            }
+                                        </div>
+
+
+
                                         <div class="hover-area">
                                             <div class="add-cart-button">
                                                 <h4><a href="/them-gio-hang?productId=@item.ID&quantity=1" class="le-button">Thêm vào giỏ</a></h4>
                                             </div>
                                         </div>
+
                                     </div>
+
                                 </div>
                             </div>
-                            <div class="clear"></div>
+
                         </div>
 
 

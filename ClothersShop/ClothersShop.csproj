@@ -77,6 +77,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -446,9 +454,8 @@
     <Content Include="assets\client\assets\css\prettyPhoto.css" />
     <Content Include="assets\client\assets\css\red.css" />
     <Content Include="assets\client\assets\images\1.gif" />
-    <Content Include="assets\client\assets\images\slide1.jpg" />
     <Content Include="assets\client\assets\images\2.gif" />
-    <Content Include="assets\client\assets\images\slide2.jpg" />
+    <Content Include="assets\client\assets\images\slide1.jpg" />
     <Content Include="assets\client\assets\images\ajax.gif" />
     <Content Include="assets\client\assets\images\AjaxLoader.gif" />
     <Content Include="assets\client\assets\images\background-images\testimonials.jpg" />
@@ -549,6 +556,7 @@
     <Content Include="assets\client\assets\images\recent-posts\3.jpg" />
     <Content Include="assets\client\assets\images\recent-posts\4.jpg" />
     <Content Include="assets\client\assets\images\recent-posts\5.jpg" />
+    <Content Include="assets\client\assets\images\slide2.jpg" />
     <Content Include="assets\client\assets\images\sliders\slider01.jpg" />
     <Content Include="assets\client\assets\images\sliders\slider02.jpg" />
     <Content Include="assets\client\assets\images\sliders\slider03.jpg" />
@@ -586,6 +594,7 @@
     <Content Include="assets\client\switchstylesheet\switchstylesheet.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\login.png" />
     <Content Include="Content\images\logout.png" />
     <Content Include="Content\images\signup.png" />
@@ -596,6 +605,7 @@
     <Content Include="Content\js\controller\cartController.js" />
     <Content Include="Content\js\controller\contactController.js" />
     <Content Include="Content\js\controller\userController.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -812,6 +822,7 @@
     <Content Include="Views\Cart\Payment.cshtml" />
     <Content Include="Views\Cart\Success.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

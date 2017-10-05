@@ -16,6 +16,8 @@ namespace ClothersShop.ViewModel
             public string CateMetaTitle { set; get; }
             public string MetaTitle { set; get; }
             public DateTime? CreatedDate { set; get; }
-        }
+            public decimal? PromotionPrice { set; get; }
+            public DateTime? TopHot { set; get; }
+    }
     
 }

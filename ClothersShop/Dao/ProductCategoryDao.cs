@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClothersShop.Models;
-
+using PagedList;
 
 namespace Model.Dao
 {
@@ -69,16 +69,16 @@ namespace Model.Dao
                 return false;
             }
         }
-        //public IEnumerable<ProductCategory> ListAllPaging(string searchString, int page, int pageSize)
-        //{
-        //    IQueryable<ProductCategory> model = db.ProductCategories;
-        //    if (!string.IsNullOrEmpty(searchString))
-        //    {
-        //        model = model.Where(x => x.Name.Contains(searchString)|| x.CreatedBy.Contains(searchString));
-        //    }
+        public IEnumerable<ProductCategory> ListAllPaging(string searchString, int page, int pageSize)
+        {
+            IQueryable<ProductCategory> model = db.ProductCategories;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.Name.Contains(searchString) || x.CreatedBy.Contains(searchString));
+            }
 
-        //    return model.OrderByDescending(x => x.CreatedDate).ToPagedList(page, pageSize);
-        //}
+            return model.OrderByDescending(x => x.CreatedDate).ToPagedList(page, pageSize);
+        }
         public bool ChangeStatus(long id)
         {
             var productcategory = db.ProductCategories.Find(id);
