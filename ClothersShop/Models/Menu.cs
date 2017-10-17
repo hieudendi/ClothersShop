@@ -25,5 +25,7 @@ namespace ClothersShop.Models
         public bool Status { get; set; }
 
         public int? TypeID { get; set; }
+
+        public virtual MenuType MenuType { get; set; }
     }
 }

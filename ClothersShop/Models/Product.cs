@@ -9,6 +9,12 @@ namespace ClothersShop.Models
     [Table("Product")]
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            OrderDetails = new HashSet<OrderDetail>();
+        }
+
         public long ID { get; set; }
 
         [StringLength(250)]
@@ -32,9 +38,6 @@ namespace ClothersShop.Models
         [StringLength(250)]
         public string Image2 { get; set; }
 
-        [StringLength(250)]
-        public string Image3 { get; set; }
-
         public decimal? Price { get; set; }
 
         public decimal? PromotionPrice { get; set; }
@@ -44,8 +47,6 @@ namespace ClothersShop.Models
         public int? Quantity { get; set; }
 
         public long? CategoryID { get; set; }
-
-        public long? ManufacturerID { get; set; }
 
         [Column(TypeName = "ntext")]
         public string Detail { get; set; }
@@ -74,5 +75,10 @@ namespace ClothersShop.Models
 
         [StringLength(10)]
         public string ViewCount { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
+        public virtual ProductCategory ProductCategory { get; set; }
     }
 }

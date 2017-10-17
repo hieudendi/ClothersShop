@@ -10,7 +10,8 @@ namespace ClothersShop.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public string Ten { get; set; }
+        public string FullName { get; set; }
+        public string Address { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -31,7 +32,6 @@ namespace ClothersShop.Models
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Content> Contents { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
-        public virtual DbSet<Manufacturer> Manufacturers { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<MenuType> MenuTypes { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
@@ -92,22 +92,6 @@ namespace ClothersShop.Models
 
             modelBuilder.Entity<Content>()
                 .Property(e => e.ViewCount)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Manufacturer>()
-                .Property(e => e.MetaTitle)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Manufacturer>()
-                .Property(e => e.CreatedBy)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Manufacturer>()
-                .Property(e => e.ModifiledBy)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Manufacturer>()
-                .Property(e => e.MetaDescriptions)
                 .IsFixedLength();
 
             modelBuilder.Entity<Order>()

@@ -14,6 +14,6 @@ namespace ClothersShop.Models
         [Column(TypeName = "ntext")]
         public string Content { get; set; }
 
-        public bool? Statuts { get; set; }
+        public bool Statuts { get; set; }
     }
 }

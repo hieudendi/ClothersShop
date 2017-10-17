@@ -7,33 +7,27 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ClothersShop.Models;
+using ClothersShop.Common;
+using WebDocTruyenOnline.Common;
 
 namespace ClothersShop.Areas.Admin.Controllers
 {
-    public class ProductCategoriesController : Controller
+    public class ProductCategoriesController : BaseController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Admin/ProductCategories
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.ProductCategories.ToList());
+            IQueryable<ProductCategory> model = db.ProductCategories;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.Name.Contains(searchString));
+            }
+
+            return View(model.OrderBy(x => x.DisplayOrder).ThenBy(x => x.Name).ToList());
         }
 
-        // GET: Admin/ProductCategories/Details/5
-        public ActionResult Details(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ProductCategory productCategory = db.ProductCategories.Find(id);
-            if (productCategory == null)
-            {
-                return HttpNotFound();
-            }
-            return View(productCategory);
-        }
 
         // GET: Admin/ProductCategories/Create
         public ActionResult Create()
@@ -43,13 +37,19 @@ namespace ClothersShop.Areas.Admin.Controllers
 
         // POST: Admin/ProductCategories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name,MetaTitle,ParentID,DisplayOrder,SeoTitle,CreatedDate,CreatedBy,ModifiledDate,ModifiledBy,MetaKeywords,MetaDescriptions,Status,ShowOnHome")] ProductCategory productCategory)
         {
             if (ModelState.IsValid)
             {
+                var sess = (UserLogin)Session[CommonConstans.USER_SESSION];
+                productCategory.CreatedDate = DateTime.Now;
+                productCategory.CreatedBy = sess.Email;
+                productCategory.MetaTitle = ConvertToUnSign.convertToUnSign(productCategory.Name);
+                productCategory.Status = true;
+                productCategory.ShowOnHome = true;
                 db.ProductCategories.Add(productCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -75,13 +75,19 @@ namespace ClothersShop.Areas.Admin.Controllers
 
         // POST: Admin/ProductCategories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name,MetaTitle,ParentID,DisplayOrder,SeoTitle,CreatedDate,CreatedBy,ModifiledDate,ModifiledBy,MetaKeywords,MetaDescriptions,Status,ShowOnHome")] ProductCategory productCategory)
         {
             if (ModelState.IsValid)
             {
+                var sess = (UserLogin)Session[CommonConstans.USER_SESSION];
+                productCategory.ModifiledDate = DateTime.Now;
+                productCategory.ModifiledBy = sess.Email;
+                productCategory.MetaTitle = ConvertToUnSign.convertToUnSign(productCategory.Name);
+
+
                 db.Entry(productCategory).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -89,31 +95,24 @@ namespace ClothersShop.Areas.Admin.Controllers
             return View(productCategory);
         }
 
-        // GET: Admin/ProductCategories/Delete/5
-        public ActionResult Delete(long? id)
+        // POST: Admin/ProductCategories/Delete/5
+        [HttpDelete]
+        public ActionResult Delete(long id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                ProductCategory story = db.ProductCategories.Find(id);
+                db.ProductCategories.Remove(story);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            ProductCategory productCategory = db.ProductCategories.Find(id);
-            if (productCategory == null)
+            catch (Exception e)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
-            return View(productCategory);
+
         }
 
-        // POST: Admin/ProductCategories/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
-        {
-            ProductCategory productCategory = db.ProductCategories.Find(id);
-            db.ProductCategories.Remove(productCategory);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {

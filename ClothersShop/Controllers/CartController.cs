@@ -165,7 +165,7 @@ namespace ClothersShop.Controllers
                 var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
 
                 new MailHelper().SendMail(email, "Đơn hàng mới từ HPShop", content);
-                new MailHelper().SendMail(toEmail, "Đơn hàng mới HPShop", content);
+                new MailHelper().SendMail(toEmail, "Đơn hàng mới HpShop", content);
             }
             catch (Exception ex)
             {

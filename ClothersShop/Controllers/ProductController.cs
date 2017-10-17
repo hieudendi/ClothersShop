@@ -5,11 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using ClothersShop.Models;
 using Model.Dao;
+using PagedList;
+using ClothersShop.ViewModel;
 
 namespace ClothersShop.Controllers
 {
     public class ProductController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Product
         public ActionResult Index()
         {
@@ -34,30 +37,16 @@ namespace ClothersShop.Controllers
                 status = true
             }, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Category(long cateId, int page = 1, int pageSize = 1)
+        public ActionResult Category(long cateId, int? pageIndex)
         {
-            var category = new CategoryDao().ViewDetail(cateId);
-            ViewBag.Category = category;
-            int totalRecord = 0;
-            var model = new ProductDao().ListByCategoryId(cateId, ref totalRecord, page, pageSize);
+            var category = db.ProductCategories.Find(cateId);
+            ViewBag.Title = category.Name;
+            var _pageIndex = pageIndex ?? 1;
+            var model = db.Products.Where(x => x.CategoryID == cateId);
 
-            ViewBag.Total = totalRecord;
-            ViewBag.Page = page;
-
-            int maxPage = 5;
-            int totalPage = 0;
-
-            totalPage = (int)Math.Ceiling((double)(totalRecord / pageSize));
-            ViewBag.TotalPage = totalPage;
-            ViewBag.MaxPage = maxPage;
-            ViewBag.First = 1;
-            ViewBag.Last = totalPage;
-            ViewBag.Next = page + 1;
-            ViewBag.Prev = page - 1;
-
-            return View(model);
+            return View(model.OrderBy(x => x.Name).ToPagedList(_pageIndex, 1));
         }
-       
+
 
         public ActionResult Detail(long id)
         {
@@ -66,26 +55,12 @@ namespace ClothersShop.Controllers
             ViewBag.RelatedProducts = new ProductDao().ListRelatedProduct(id);
             return View(product);
         }
-        public ActionResult Search(string keyword, int page = 1, int pageSize = 1)
+        public ActionResult Search(string keyword, int? pageIndex)
         {
-            int totalRecord = 0;
-            var model = new ProductDao().Search(keyword, ref totalRecord, page, pageSize);
-
-            ViewBag.Total = totalRecord;
-            ViewBag.Page = page;
             ViewBag.Keyword = keyword;
-            int maxPage = 5;
-            int totalPage = 0;
-
-            totalPage = (int)Math.Ceiling((double)(totalRecord / pageSize));
-            ViewBag.TotalPage = totalPage;
-            ViewBag.MaxPage = maxPage;
-            ViewBag.First = 1;
-            ViewBag.Last = totalPage;
-            ViewBag.Next = page + 1;
-            ViewBag.Prev = page - 1;
-
-            return View(model);
+            var _pageIndex = pageIndex ?? 1;
+            var model = db.Products.Where(x => x.Name == keyword);
+            return View(model.OrderBy(x => x.Name).ToPagedList(_pageIndex, 10));
         }
         //public ActionResult ListByCateId(long id)
         //{

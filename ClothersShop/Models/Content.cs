@@ -55,5 +55,7 @@ namespace ClothersShop.Models
 
         [StringLength(500)]
         public string Tag { get; set; }
+
+        public virtual Category Category { get; set; }
     }
 }

@@ -1,7 +1,8 @@
-﻿@model List<ClothersShop.ViewModel.ProductViewModel>
+﻿@model PagedList.PagedList<ClothersShop.Models.Product>
+@using PagedList.Mvc;
 @{
-    var category = (ClothersShop.Models.ProductCategory)ViewBag.Category;
-    ViewBag.Title = category.Name;
+
+    ViewBag.Title = ViewBag.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
@@ -12,7 +13,7 @@
             <tr class="info">
                 <div class="content_top">
                     <div class="heading">
-                        <h1><li>@category.Name<br /></li></h1>
+                        <h1><li>@ViewBag.Title<br /></li></h1>
                         <p></p>
 
                     </div>
@@ -40,7 +41,7 @@
 
 
                                         <div class="grid_1_of_4 /Content/Client/images_1_of_4">
-                                            <a href="@url"><img src="@item.Images" alt="@item.Name" width="100%" height="100%" /></a>
+                                            <a href="@url"><img src="@item.Image" alt="@item.Name" width="100%" height="100%" /></a>
                                             <h2>Tên Sản phẩm: @item.Name </h2>
                                             <div class="prices">
                                                 @if (item.PromotionPrice != null)
@@ -124,6 +125,11 @@
                 </div>
             </div>
             <div class="clear"></div>
+            <div class="nav-pagination">
+                <div class='wp-pagenavi'>
+                    @Html.PagedListPager(Model, pageIndex => Url.Action("Category", new { pageIndex }))
+                </div>
+            </div>
         </div>
     </div>
 </div>

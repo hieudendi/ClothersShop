@@ -26,9 +26,8 @@ namespace Model.Dao
             db.SaveChanges();
             return entity.ID;
         }
-        public List<ProductViewModel> ListByCategoryId(long cateID, ref int totalRecord, int pageIndex = 1, int pageSize = 2)
+        public List<ProductViewModel> ListByCategoryId(long cateID)
         {
-            totalRecord = db.Products.Where(x => x.CategoryID == cateID).Count();
             var model = (from a in db.Products
                          join b in db.ProductCategories
                          on a.CategoryID equals b.ID
@@ -58,7 +57,7 @@ namespace Model.Dao
                              TopHot = x.TopHot,
                              PromotionPrice = x.PromotionPrice
                          });
-            model.OrderByDescending(x => x.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            model.OrderByDescending(x => x.CreatedDate);
             return model.ToList();
         }
 
@@ -145,9 +144,8 @@ namespace Model.Dao
         {
             return db.Products.Where(x => x.Name.Contains(keyword)).Select(x => x.Name).ToList();
         }
-        public List<ProductViewModel> Search(string keyword, ref int totalRecord, int pageIndex = 1, int pageSize = 2)
+        public List<ProductViewModel> Search(string keyword)
         {
-            totalRecord = db.Products.Where(x => x.Name == keyword).Count();
             var model = (from a in db.Products
                          join b in db.ProductCategories
                          on a.CategoryID equals b.ID
@@ -177,7 +175,7 @@ namespace Model.Dao
                              TopHot = x.TopHot,
                              PromotionPrice = x.PromotionPrice
                          });
-            model.OrderByDescending(x => x.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            model.OrderByDescending(x => x.CreatedDate);
             return model.ToList();
         }
        

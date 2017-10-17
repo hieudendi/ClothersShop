@@ -68,7 +68,10 @@ namespace ClothersShop.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
+        [Required]
+        [StringLength(100, ErrorMessage = "Tên của bạn không được quá {2} ký tự.")]
+        [Display(Name = "Họ Tên")]
+        public string FullName { get; set; }
         [Required]
         [StringLength(100, ErrorMessage = "Mật khẩu  Phải ít nhất {2} ký tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
@@ -79,10 +82,6 @@ namespace ClothersShop.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "Mật khẩu không trùng khớp.")]
         public string ConfirmPassword { get; set; }
-        [Required]
-        [StringLength(100, ErrorMessage = "Tên của bạn không được quá {2} ký tự.")]
-        [Display(Name = "Họ Tên")]
-        public string Ten { get; set; }
 
     }
 

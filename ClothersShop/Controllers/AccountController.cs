@@ -35,9 +35,9 @@ namespace ClothersShop.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -74,8 +74,8 @@ namespace ClothersShop.Controllers
                 return View(model);
             }
             
-            ClothersShopEntities1 db = new ClothersShopEntities1();
-            AspNetUser user = db.AspNetUsers.SingleOrDefault(m => m.Email == model.Email);
+            ApplicationDbContext db = new ApplicationDbContext();
+            ApplicationUser user = db.Users.SingleOrDefault(m => m.Email == model.Email);
             if (user == null)
             {
                 ModelState.AddModelError("CustomError", "Email không tồn tại");
@@ -100,10 +100,7 @@ namespace ClothersShop.Controllers
                         var sess = new UserLogin();
                         sess.Email = model.Email;
                         sess.Password = model.Password;
-                        if (context.Users.SingleOrDefault(m => m.Email == model.Email).Email == model.Email)
-                        {
-                            sess.Name = context.Users.SingleOrDefault(m => m.Email == model.Email).Ten.ToString();
-                        }
+
 
                         Session.Add(CommonConstans.USER_SESSION, sess);
                         return RedirectToLocal(returnUrl);
@@ -180,7 +177,7 @@ namespace ClothersShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Ten=model.Ten };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FullName=model.FullName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

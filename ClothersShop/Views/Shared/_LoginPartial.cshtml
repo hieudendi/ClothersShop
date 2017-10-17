@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@using ClothersShop.Models
 @using ClothersShop.Common
 @if (Request.IsAuthenticated)
 {
@@ -7,20 +8,29 @@
         @Html.AntiForgeryToken()
 
         var sess = (UserLogin)Session[CommonConstans.USER_SESSION];
-
+        var user = new ApplicationDbContext();
+        string email = User.Identity.GetUserName();
+        var model = user.Users.SingleOrDefault(x => x.UserName == email);
         <ul class="nav navbar-nav navbar-right">
-            @if (sess == null)
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    
+                       Xin chào @User.Identity.GetUserName();
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    @try
                     {
-                <li>
-                    @Html.ActionLink("Xin chào " + User.Identity.GetUserName() + "!  |", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                </li>
-            }
-            else
-            {
-                <li>
-                    @Html.ActionLink("Xin chào " + sess.Name + " !  |", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                </li>
-            }
+                        if (model.Roles.SingleOrDefault(x => x.UserId == User.Identity.GetUserId()).RoleId == "admin")
+                        {
+                            <li><a href="/Admin/Home/Index" style="color:forestgreen;font-weight:900">Trang quản trị</a></li>
+                                <li role="separator" class="divider"></li>
+                        }
+                    }
+                    catch { }
+                </ul>
+            </li>
+
             <li><img src="~/Content/images/logout.png"  title="Tiêu đề ảnh"><a href="javascript:document.getElementById('logoutForm').submit()">Đăng Xuất</a></li>
         </ul>
     }
