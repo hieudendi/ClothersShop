@@ -44,7 +44,7 @@ namespace ClothersShop.Controllers
             var _pageIndex = pageIndex ?? 1;
             var model = db.Products.Where(x => x.CategoryID == cateId);
 
-            return View(model.OrderBy(x => x.Name).ToPagedList(_pageIndex, 1));
+            return View(model.OrderBy(x => x.Name).ToPagedList(_pageIndex, 4));
         }
 
 
@@ -59,7 +59,7 @@ namespace ClothersShop.Controllers
         {
             ViewBag.Keyword = keyword;
             var _pageIndex = pageIndex ?? 1;
-            var model = db.Products.Where(x => x.Name == keyword);
+            var model = db.Products.Where(x => x.Name.Contains(keyword));
             return View(model.OrderBy(x => x.Name).ToPagedList(_pageIndex, 10));
         }
         //public ActionResult ListByCateId(long id)

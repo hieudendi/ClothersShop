@@ -5,9 +5,9 @@
 }
 
     
-
+<hr /><p></p>
     <p>
-        <h1><img src="http://icons.iconarchive.com/icons/hopstarter/button/32/Button-Add-icon.png" title="Tiêu đề ảnh"> @Html.ActionLink("Thêm Sản Phẩm", "Create")</h1>
+        <h1><img src="http://icons.iconarchive.com/icons/hopstarter/button/32/Button-Add-icon.png" title="Tiêu đề ảnh"> @Html.ActionLink("Thêm Loại Sản Phẩm", "Create")</h1>
     </p>
 @using (Html.BeginForm("Index", "ProductCategories", FormMethod.Get))
 {
@@ -23,14 +23,12 @@
     </div>
 }
     <div class="container">
-        <table class="table">
-            <tr>
+        <table class="table table-bordered">
+            <tr class="success">
                 <th>
                     Tên loại
                 </th>
-                <th>
-                    Thứ tự
-                </th>
+               
                 <th>
                     Ngày tạo
                 </th>
@@ -49,19 +47,16 @@
                 <th>
                     Cho phép hiển thị
                 </th>
-                <th></th>
+                <th>Thao tác</th>
             </tr>
 
             @foreach (var item in Model)
             {
-                <tr id="row_@item.ID">
+                <tr id="row_@item.ID" class="info">
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DisplayOrder)
-                    </td>
-
+                  
                     <td>
                         @Html.DisplayFor(modelItem => item.CreatedDate)
                     </td>
@@ -81,14 +76,15 @@
                         @Html.DisplayFor(modelItem => item.ShowOnHome)
                     </td>
                     <td>
-                        @Html.ActionLink("Sửa", "Edit", new { id = item.ID }) |
-                        @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID }, new AjaxOptions
-                   {
-                       Confirm = "Bạn có chắc chắn xóa",
-                       OnComplete = "$('#row_" + @item.ID + "').remove()",
-                       HttpMethod = "Delete"
-                   })
-                    </td>
+                        <button class="btn btn-info"> @Html.ActionLink("Sửa", "Edit", new { id = item.ID })</button> 
+                        <button class="btn btn-danger">
+                            @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID }, new AjaxOptions
+                                                {
+                                                    Confirm = "Bạn có chắc chắn xóa",
+                                                    OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                                    HttpMethod = "Delete"
+                                                })</button>
+</td>
                 </tr>
             }
 

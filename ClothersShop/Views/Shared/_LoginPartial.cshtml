@@ -14,24 +14,38 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+
+                    <img class="nav-user-photo" src="~/assets/admin/images/avatars/avatar.gif" height="40px" width="40px" alt="avatar">
+                    <span class="user-info">
+                       @(model.FullName)
+                    </span>
+
                     
-                       Xin chào @User.Identity.GetUserName();
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    @try
+                   
+
+
+            <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                @try
                     {
-                        if (model.Roles.SingleOrDefault(x => x.UserId == User.Identity.GetUserId()).RoleId == "admin")
+                        if (model.Roles.SingleOrDefault(x => x.UserId == User.Identity.GetUserId()).RoleId == "1")
                         {
-                            <li><a href="/Admin/Home/Index" style="color:forestgreen;font-weight:900">Trang quản trị</a></li>
-                                <li role="separator" class="divider"></li>
-                        }
+                        <li><a href="/Admin/Home/Index" style="color:forestgreen;font-weight:900">Trang quản trị</a></li>
+                        <li><div style="color:forestgreen;font-weight:900">@Html.ActionLink("Trang Cá Nhân", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</div></li>
+                            <li role="separator" class="divider"></li>
                     }
-                    catch { }
-                </ul>
+                   
+                }
+                catch
+                {
+                <li><div style="color:forestgreen;font-weight:900">@Html.ActionLink("Trang Cá Nhân", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</div></li>
+                <li role="separator" class="divider"></li>
+                }
+            </ul>
             </li>
 
-            <li><img src="~/Content/images/logout.png"  title="Tiêu đề ảnh"><a href="javascript:document.getElementById('logoutForm').submit()">Đăng Xuất</a></li>
+            <li><img src="~/Content/images/logout.png" title="Tiêu đề ảnh"><a href="javascript:document.getElementById('logoutForm').submit()">Đăng Xuất</a></li>
         </ul>
     }
 }

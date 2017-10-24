@@ -271,6 +271,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageRoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageUserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SlidesController.cs" />
@@ -331,6 +332,7 @@
     <Compile Include="ViewModel\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\admin\avatar.gif" />
     <Content Include="assets\admin\css\ace-ie.min.css" />
     <Content Include="assets\admin\css\ace-part2.min.css" />
     <Content Include="assets\admin\css\ace-rtl.min.css" />
@@ -360,6 +362,7 @@
     <Content Include="assets\admin\font-awesome\4.5.0\css\font-awesome.min.css" />
     <Content Include="assets\admin\font-awesome\4.5.0\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\admin\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\admin\images\avatars\avatar.gif" />
     <Content Include="assets\admin\images\avatars\avatar.png" />
     <Content Include="assets\admin\images\avatars\avatar1.png" />
     <Content Include="assets\admin\images\avatars\avatar2.png" />
@@ -1761,6 +1764,11 @@
     <Content Include="Areas\Admin\Views\ManageUser\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ManageUser\EditRole.cshtml" />
     <Content Include="Areas\Admin\Views\ManageUser\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

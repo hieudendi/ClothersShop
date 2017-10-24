@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ClothersShop.Models.Order>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Danh Sách Đơn Hàng</title>
+</head>
+<body><p><hr /></p>
+    <p>
+       
+    </p>
+    <table class="table table-bordered">
+        <tr class="success">
+            <th>
+                Ngày tạo
+            </th>
+           
+            <th>
+                Người Đặt
+            </th>
+            <th>
+              Đơn Hàng
+            </th>
+            <th>
+                Thông Tin Liên Hệ
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipEmail)
+            </th>
+            <th>
+                Trạng thái duyệt
+            </th>
+            <th>Thao Tác</th>
+
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr class="info">
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipMobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipEmail)
+            </td>
+
+          
+            <td>
+                <div class="col-md-10"> 
+                    <div class="checkbox">
+                       @Html.DisplayFor(modelItem => item.Status)
+                    </div>
+                </div>
+                </td>
+            <td>
+                <div class="col-md-12">
+                    <button class="btn btn-danger">
+                        @Html.ActionLink("Duyệt", "Edit", new { id = item.ID })
+                    </button>
+                    </div>
+</td>
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            </td>*@
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
